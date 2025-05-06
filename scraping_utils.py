@@ -234,7 +234,10 @@ def multithread_download_urls_special(Dtsc, urls, pics_dst, vids_dst, algo=hashl
         return hashes
 
     global MAX_THREADS
-    MAX_THREADS = environ.get('MAX_THREADS', MAX_THREADS)
+    try:
+        MAX_THREADS = int(environ.get('MAX_THREADS'))
+    except:
+        pass
         
     # Print the initial status box
     dst = commonpath([pics_dst, vids_dst])
