@@ -233,6 +233,7 @@ def multithread_download_urls_special(Dtsc, urls, pics_dst, vids_dst, algo=hashl
     if(not issubclass(Dtsc, DownloadThread)):
         return hashes
 
+    global MAX_THREADS
     MAX_THREADS = environ.get('MAX_THREADS', MAX_THREADS)
         
     # Print the initial status box
