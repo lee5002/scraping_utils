@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from os import listdir, system, name
+from os import listdir, system, name, environ
 from os.path import join, isfile, isdir, commonpath
 from sys import stdout
 from threading import Thread, enumerate
@@ -232,6 +232,8 @@ def multithread_download_urls_special(Dtsc, urls, pics_dst, vids_dst, algo=hashl
     # Confirm that Dtsc is a subclass of DownloadThread (or the same class)
     if(not issubclass(Dtsc, DownloadThread)):
         return hashes
+
+    MAX_THREADS = environ.get('MAX_THREADS', MAX_THREADS)
         
     # Print the initial status box
     dst = commonpath([pics_dst, vids_dst])
