@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from os import listdir, system, name, environ
+from os import listdir, system, name, environ, remove
 from os.path import join, isfile, isdir, commonpath
 from sys import stdout
 from threading import Thread, enumerate
@@ -127,7 +127,7 @@ Compute the hashes of files with specified extensions using a specified algorith
 """
 def compute_file_hashes(dir, exts=None, algo=hashlib.md5, hashes={}, short=False, recurse=False):
     exts_clean = clean_exts(exts)
-    for name in listdir(dir):
+    for name in (dir):
         full_name = join(dir, name)
         ext = name.split('.')[-1]
 
@@ -152,7 +152,7 @@ def compute_file_hashes(dir, exts=None, algo=hashlib.md5, hashes={}, short=False
                 stdout.write(f'unique hash ({len(hashes)}).\n')
             else:
                 stdout.write(f'duplicate of ({hashes[file_hash]}). Delete it\n')
-                os.remove(full_name)
+                remove(full_name)
 
         elif(isdir(full_name) and recurse):
             hashes = compute_file_hashes(full_name, exts=exts, algo=algo, hashes=hashes, recurse=True)
