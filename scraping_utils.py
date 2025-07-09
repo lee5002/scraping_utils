@@ -151,7 +151,8 @@ def compute_file_hashes(dir, exts=None, algo=hashlib.md5, hashes={}, short=False
                 hashes[file_hash] = full_name
                 stdout.write(f'unique hash ({len(hashes)}).\n')
             else:
-                stdout.write(f'duplicate of ({hashes[file_hash]}).\n')
+                stdout.write(f'duplicate of ({hashes[file_hash]}). Delete it\n')
+                os.remove(full_name)
 
         elif(isdir(full_name) and recurse):
             hashes = compute_file_hashes(full_name, exts=exts, algo=algo, hashes=hashes, recurse=True)
