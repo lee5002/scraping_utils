@@ -127,7 +127,7 @@ Compute the hashes of files with specified extensions using a specified algorith
 """
 def compute_file_hashes(dir, exts=None, algo=hashlib.md5, hashes={}, short=False, recurse=False):
     exts_clean = clean_exts(exts)
-    for name in (dir):
+    for name in listdir(dir):
         full_name = join(dir, name)
         ext = name.split('.')[-1]
 
